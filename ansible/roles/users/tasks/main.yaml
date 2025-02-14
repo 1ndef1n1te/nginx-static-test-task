@@ -1,0 +1,17 @@
+---
+- name: Configure users
+  ansible.builtin.user:
+    name: "{{item.name}}"
+    shell: "{{item.shell}}"
+    state: "{{item.state}}"
+    password: "{{item.password}}"
+    groups: "{{item.groups}}"
+  loop: "{{users_list}}"
+
+- name: Add ssh public keys fot present users
+  ansible.posix.authorized_key:
+    user: "{{item.name}}"
+    state: present
+    key: "{{item.ssh_public_key}}"
+  when: "item.state == 'present'"
+  loop: "{{users_list}}"

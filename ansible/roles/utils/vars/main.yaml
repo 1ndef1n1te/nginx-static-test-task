@@ -1,0 +1,6 @@
+---
+utils_update_packages: true
+utils_packages:
+  - htop
+  - nano
+  - zip

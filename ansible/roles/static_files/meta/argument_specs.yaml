@@ -1,0 +1,9 @@
+---
+argument_specs:
+  main:
+    description: >
+      Role that copy static files to the server
+    options:
+      static_files_folder:
+        type: str
+        description: Path to static files on the server

@@ -1,0 +1,4 @@
+---
+- name: Restart sshd by SIGHUP
+  ansible.builtin.shell: |
+    kill -HUP $(cat /var/run/sshd.pid)

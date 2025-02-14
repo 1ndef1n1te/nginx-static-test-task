@@ -1,0 +1,23 @@
+---
+argument_specs:
+  main:
+    description: >
+      Role that configure users on the server
+    options:
+      users_list:
+        type: list
+        description: Users list
+        elements: dict
+        options:
+          name:
+            description: Username
+          shell:
+            description: User shell
+          state:
+            description: Present or absent user
+          ssh_public_key:
+            description: User ssh public key for authorized_keys
+          password:
+            description: Password
+          groups:
+            description: List of user groups

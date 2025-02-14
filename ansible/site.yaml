@@ -1,0 +1,50 @@
+---
+# Root file
+
+- name: Configure users
+  hosts: nginx-static
+  become: true
+  roles:
+    - users
+  tags:
+    - with_users
+
+- name: Install zsh for specific users
+  hosts: nginx-static
+  become: true
+  roles:
+    - zsh
+  tags:
+    - with_zsh
+
+- name: Configure sshd
+  hosts: nginx-static
+  become: true
+  roles:
+    - sshd
+  tags:
+    - with_sshd
+
+- name: Upgrade && install additionals packages
+  hosts: nginx-static
+  become: true
+  roles:
+    - utils
+  tags:
+    - with_utils
+
+- name: Install and configure nginx
+  hosts: nginx-static
+  become: true
+  roles:
+    - nginx
+  tags:
+    - with_nginx
+
+- name: Copy static files
+  hosts: nginx-static
+  become: true
+  roles:
+    - static_files
+  tags:
+    - with_static_files

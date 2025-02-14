@@ -1,0 +1,4 @@
+---
+- name: Restart nginx process
+  ansible.builtin.shell:
+    /usr/sbin/nginx -s reload

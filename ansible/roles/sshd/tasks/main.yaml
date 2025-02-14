@@ -1,0 +1,6 @@
+---
+- name: Copy sshd config file
+  ansible.builtin.copy:
+    src: "05-custom.conf"
+    dest: "/etc/ssh/sshd_config.d/05-custom.conf"
+  notify: Restart sshd by SIGHUP

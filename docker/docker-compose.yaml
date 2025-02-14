@@ -1,0 +1,9 @@
+services:
+  nginx-static:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: "nginx-static"
+    ports:
+      - "80:80"
+      - "2222:22" # secure public SSH port

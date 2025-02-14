@@ -1,0 +1,26 @@
+---
+- name: Register user with zsh shell in /etc/passwd
+  ansible.builtin.shell:
+    grep /bin/zsh /etc/passwd | cut -d ":" -f 1
+  register: __zsh_users
+
+- name: Ensure zsh, git packages installed
+  ansible.builtin.apt:
+    name: "{{item}}"
+    state: present
+  when: " __zsh_users.stdout_lines | length > 0"
+  loop:
+    - git
+    - zsh
+
+- name: Copy oh-my-zsh plugin installation script
+  ansible.builtin.copy:
+    src: oh-my-zsh_install.sh
+    dest: /home/ansible/oh-my-zsh_install.sh
+
+- name: Install oh-my-zsh plugin
+  ansible.builtin.shell: >
+    sh /home/ansible/oh-my-zsh_install.sh --unattended
+  environment:
+    ZSH: "/home/{{item}}/.oh-my-zsh"
+  loop: "{{__zsh_users.stdout_lines}}"

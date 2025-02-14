@@ -1,0 +1,32 @@
+---
+- name: Install nginx
+  ansible.builtin.apt:
+    name: "nginx={{nginx_version}}"
+    state: present
+    update_cache: true
+
+- name: Start nginx process
+  ansible.builtin.shell: >
+    /usr/sbin/nginx
+  ignore_errors: true #TODO make it better
+
+- name: Copy nginx conf file
+  ansible.builtin.copy:
+    src: "nginx.conf"
+    dest: "/etc/nginx/nginx.conf"
+    mode: "0644"
+  notify: Restart nginx process
+
+- name: Template static-server conf file
+  ansible.builtin.template:
+    src: "static-server.j2"
+    dest: "/etc/nginx/sites-available/static-server"
+    mode: "0644"
+  notify: Restart nginx process
+
+- name: Enable static-server site
+  file:
+    src: "/etc/nginx/sites-available/static-server"
+    dest: "/etc/nginx/sites-enabled/static-server"
+    state: link
+  notify: Restart nginx process

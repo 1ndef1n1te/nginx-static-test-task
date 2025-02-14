@@ -1,0 +1,10 @@
+---
+- name: Ensure static file folder exists
+  ansible.builtin.file:
+    state: directory
+    path: "{{static_files_folder}}"
+
+- name: Copy static files to server
+  ansible.builtin.unarchive:
+    src: "static.zip"
+    dest: "{{static_files_folder}}"

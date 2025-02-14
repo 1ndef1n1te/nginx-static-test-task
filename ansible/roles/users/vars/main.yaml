@@ -1,0 +1,30 @@
+---
+users_list:
+  - name: user1
+    shell: /bin/bash
+    state: present
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOS143oYog5hfDIGv9VOIvrpqnebdUshXEjgSLBB6AxN indefinite@casper
+    password: changeme
+    groups:
+      - sudo
+  - name: user44
+    shell: /bin/bash
+    state: present
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOS143oYog5hfDIGv9VOIvrpqnebdUshXEjgSLBB6AxN indefinite@casper
+    password: changeme
+    groups:
+      - sudo
+  - name: user45
+    shell: /bin/zsh
+    state: present
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOS143oYog5hfDIGv9VOIvrpqnebdUshXEjgSLBB6AxN indefinite@casper
+    password: changeme
+    groups:
+      - sudo
+  - name: user46
+    shell: /bin/zsh
+    state: present
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOS143oYog5hfDIGv9VOIvrpqnebdUshXEjgSLBB6AxN indefinite@casper
+    password: changeme
+    groups:
+      - sudo
