@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name {{nginx_server_name}};
+    server_name _ default_server;
     proxy_cache static;
     location /images/ {
         autoindex on;

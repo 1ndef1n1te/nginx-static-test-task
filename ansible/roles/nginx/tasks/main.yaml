@@ -30,6 +30,12 @@
     mode: "0644"
   notify: Restart nginx process
 
+- name: Disable default site
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  notify: Restart nginx process
+
 - name: Enable static-server site
   file:
     src: "/etc/nginx/sites-available/static-server"
