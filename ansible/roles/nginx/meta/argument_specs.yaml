@@ -8,6 +8,3 @@ argument_specs:
         type: str
         description: Nginx package version
         default: "1.24.0-2ubuntu7.1"
-      nginx_server_name:
-        type: str
-        description: IP address or domain of the server
