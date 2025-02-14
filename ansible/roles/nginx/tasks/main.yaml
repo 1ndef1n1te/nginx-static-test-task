@@ -5,10 +5,16 @@
     state: present
     update_cache: true
 
+- name: Determine if nginx is running
+  ansible.builtin.shell: >
+    pgrep -l nginx
+  register: __nginx_running_process
+  failed_when: __nginx_running_process.rc not in [0, 1]
+
 - name: Start nginx process
   ansible.builtin.shell: >
     /usr/sbin/nginx
-  ignore_errors: true #TODO make it better
+  when: "__nginx_running_process.rc == 1"
 
 - name: Copy nginx conf file
   ansible.builtin.copy:

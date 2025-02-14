@@ -24,3 +24,5 @@
   environment:
     ZSH: "/home/{{item}}/.oh-my-zsh"
   loop: "{{__zsh_users.stdout_lines}}"
+  register: __install_zsh_result
+  failed_when: '"already exists" not in __install_zsh_result.stdout'
