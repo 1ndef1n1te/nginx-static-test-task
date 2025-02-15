@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    server_name _ default_server;
+    proxy_cache static;
+    location /images/ {
+        autoindex on;
+        root /var/www/html;
+        try_files $uri $uri/ =404;
+        expires 1h;
+        access_log /var/log/nginx/static_access.log;
+        error_log  /var/log/nginx/static_error.log;
+    }
+    location / {
+      return 403;
+    }
+}

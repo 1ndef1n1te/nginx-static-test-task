@@ -23,9 +23,9 @@
     mode: "0644"
   notify: Restart nginx process
 
-- name: Template static-server conf file
-  ansible.builtin.template:
-    src: "static-server.j2"
+- name: Copy static-server conf file
+  ansible.builtin.copy:
+    src: "static-server"
     dest: "/etc/nginx/sites-available/static-server"
     mode: "0644"
   notify: Restart nginx process
