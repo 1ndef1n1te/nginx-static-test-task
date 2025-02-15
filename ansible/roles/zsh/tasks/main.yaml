@@ -3,6 +3,7 @@
   ansible.builtin.shell:
     grep /bin/zsh /etc/passwd | cut -d ":" -f 1
   register: __zsh_users
+  changed_when: False
 
 - name: Ensure zsh, git packages installed
   ansible.builtin.apt:

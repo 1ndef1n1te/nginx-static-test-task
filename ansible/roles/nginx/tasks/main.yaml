@@ -10,6 +10,7 @@
     pgrep -l nginx
   register: __nginx_running_process
   failed_when: __nginx_running_process.rc not in [0, 1]
+  changed_when: False
 
 - name: Start nginx process
   ansible.builtin.shell: >
